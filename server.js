@@ -8,7 +8,7 @@ const app = express();
 app.use(morgan('common'));
 
 app.get('/', (req, res) => {
-	res.json('This is my blog');
+	res.sendFile(__dirname + '/views/index.html');
 });
 
 app.use('/blog-posts', blogPostRouter);
