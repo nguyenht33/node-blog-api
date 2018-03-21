@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', jsonParser, (req, res) => {
-	const requiredFields = ['title', 'content', 'author', 'date'];
+	const requiredFields = ['title', 'content', 'author', 'publishDate'];
 	for (let i = 0; i < requiredFields.length; i++) {
 		const field = requiredFields[i];
 		if (!(field in req.body)) {
@@ -24,12 +24,12 @@ router.post('/', jsonParser, (req, res) => {
 		}
 	}
 
-	const post = BlogPosts.create(req.body.title, req.body.content, req.body.author, req.body.date);
+	const post = BlogPosts.create(req.body.title, req.body.content, req.body.author, req.body.publishDate);
 	res.status(201).json(post);
 });
 
 router.put('/:id', jsonParser, (req, res) => {
-	const requiredFields = ['title', 'content', 'author', 'date', 'id'];
+	const requiredFields = ['title', 'content', 'author', 'publishDate', 'id'];
 	for (let i = 0; i < requiredFields.length; i++) {
 		const field = requiredFields[i];
 		if (!(field in req.body)) {
@@ -50,7 +50,7 @@ router.put('/:id', jsonParser, (req, res) => {
 		title: req.body.title,
 		content: req.body.content,
 		author: req.body.author,
-		date: req.body.date
+		publishDate: req.body.publishDate
 	});
 	res.status(204).end();
 });
